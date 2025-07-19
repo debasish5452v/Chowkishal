@@ -1,0 +1,575 @@
+----------  RESET  ----------
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f8f5f0;
+    color: #333;
+    overflow-x: hidden;
+}
+
+/* ----------  NAVBAR  ---------- */
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px 0;
+    z-index: 1000;
+    transition: background .3s, box-shadow .3s;
+}
+header.scrolled {
+    background: rgba(255,255,255,.95);
+    box-shadow: 0 4px 20px rgba(0,0,0,.1);
+}
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+nav a {
+    position: relative;
+    text-decoration: none;
+    color: #282b28;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: .5px;
+    transition: color .3s;
+}
+header.scrolled nav a { color: #333; }
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #5e8b7e;
+    transition: width .3s;
+}
+nav a:hover::after,
+nav a.active::after { width: 100%; }
+
+/* ----------  HERO  ---------- */
+.hero {
+    height: 90vh;
+    display: grid;
+    place-items:center;
+    text-align: center;
+    color: #313030;
+    position: relative;
+}
+.hero-content h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 620;
+    margin-bottom: 15px;
+    animation: fadeUp 1.2s ease-out;
+}
+.hero-content h1 span { color: #2dda6f; }
+.hero-content p {
+    font-size: 1.25rem;
+    margin-bottom: 30px;
+    animation: fadeUp 1.2s ease-out .2s both;
+}
+.cta {
+    display: inline-block;
+    padding: 14px 32px;
+    background: #28d1a1;
+    color: #fff;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: transform .3s, box-shadow .3s;
+    animation: fadeUp 1.2s ease-out .4s both;
+}
+.cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(94,139,126,.4);
+}
+.scroll-hint {
+    position: absolute;
+    bottom: 30px;
+    animation: bounce 2s infinite;
+    font-size: 2.5rem;
+}
+
+/* ----------  SECTIONS  ---------- */
+.section {
+    padding: 120px 20px 100px;
+    scroll-margin-top: 80px;
+}
+.section-title {
+    text-align: center;
+    font-size: 2.0rem;
+    margin-bottom: 60px;
+    position: relative;
+}
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: #5e8b7e;
+}
+
+/* ----------  GALLERY  ---------- */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.gallery-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,.1);
+    transition: transform .3s;
+}
+.gallery-item:hover { transform: translateY(-10px); }
+.gallery-item img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: transform .5s;
+}
+.gallery-item:hover img { transform: scale(1.1); }
+.gallery-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,.7));
+    color: #fff;
+    padding: 15px;
+    opacity: 0;
+    transition: opacity .3s;
+}
+.gallery-item:hover .gallery-caption { opacity: 1; }
+
+/* --- CLUB MEMBERS: 3 columns, creative card look --- */
+.club-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px 36px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  counter-reset: member;
+}
+
+.club-list li {
+  counter-increment: member;
+  background: #f7faf9;
+  border-radius: 16px;
+  box-shadow: 0 4px 18px rgba(94,139,126,0.10), 0 1.5px 4px rgba(46, 213, 112, 0.07);
+  padding: 32px 18px 18px 48px;
+  margin: 0;
+  position: relative;
+  font-size: 1.13rem;
+  color: #2f3e46;
+  transition: transform 0.18s, box-shadow 0.18s, background 0.18s;
+  min-height: 90px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.club-list li::before {
+  content: counter(member, decimal-leading-zero);
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #28d1a1;
+  background: #e6f9f1;
+  border-radius: 50%;
+  width: 2.1em;
+  height: 2.1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(46, 213, 112, 0.07);
+}
+
+.club-list li:hover {
+  transform: translateY(-8px) scale(1.04);
+  box-shadow: 0 12px 32px rgba(46, 213, 112, 0.18), 0 2px 8px rgba(94,139,126,0.13);
+  background: #e6f9f1;
+  color: #1b3a2b;
+}
+
+@media (max-width: 900px) {
+  .club-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px 18px;
+  }
+}
+@media (max-width: 600px) {
+  .club-list {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .club-list li {
+    font-size: 1rem;
+    padding: 22px 14px 14px 38px;
+    min-height: 60px;
+  }
+  .club-list li::before {
+    font-size: 1rem;
+    width: 1.7em;
+    height: 1.7em;
+    top: 10px;
+    left: 10px;
+  }
+}
+
+/* ----------  ABOUT  ---------- */
+.about-content {
+    max-width: 800px;
+    margin: 0 auto 60px;
+    text-align: center;
+    line-height: 1.8;
+    font-size: 1rem;
+    color: #555;
+}
+.about-cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+.about-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 35px 25px;
+    max-width: 300px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.08);
+    transition: transform .3s;
+}
+.about-card:hover { transform: translateY(-10px); }
+.about-card h3 { color: #5e8b7e; margin-bottom: 15px; }
+
+/* ----------  MAP  ---------- */
+.map-wrapper {
+    width: 100%;
+    height: 60vh;
+    max-height: 500px;
+    margin: 0 auto;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,.15);
+}
+
+/* ----------  ANIMATIONS  ---------- */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-20px); }
+    60% { transform: translateY(-10px); }
+}
+
+/* ----------  RESPONSIVE  ---------- */
+@media (max-width: 768px) {
+    nav { gap: 20px; }
+    nav a { font-size: .9rem; }
+    .section { padding: 100px 15px 70px; }
+    .section-title { font-size: 2rem; }
+}
+
+/* scrolling effect */
+@keyframes appear {
+    from { opacity: 0; 
+        transform: translateX(-100px); 
+    }
+    to { opacity: 1;
+        transform: translateX(0);
+     }
+}
+.club-list {
+    animation: appear linear;
+    animation-timeline: view();
+    animation-range: 0% cover 40%;
+}
+/* ----------  COLLAGE  ---------- */
+.collage {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 35px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.polaroid {
+  background: #fff;
+  padding: 12px 12px 50px; /* bottom space for caption */
+  box-shadow: 0 4px 15px rgba(0,0,0,.15);
+  transform: rotate(var(--r, 0deg));
+  transition: transform .3s;
+}
+
+.polaroid:nth-child(odd)  { --r: -2deg; }
+.polaroid:nth-child(even) { --r:  2deg; }
+
+.polaroid:hover {
+  transform: scale(1.05) rotate(0deg);
+}
+
+.polaroid img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 3px;
+}
+
+.polaroid span {
+  display: block;
+  text-align: center;
+  font-size: .95rem;
+  margin-top: 12px;
+  color: #333;
+}
+
+@media (max-width: 768px) {
+  .collage {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+  }
+  .polaroid {
+    padding: 8px 8px 35px;
+  }
+  .polaroid img {
+    height: 130px;
+  }
+}
+
+/* ----------  CLUB MEMBERS: 3-column cards ---------- */
+.club-three-col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px 32px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+  counter-reset: member;
+  list-style: none;
+}
+
+.club-three-col li {
+  counter-increment: member;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(0,0,0,.08);
+  padding: 15px 10px 15px 45px;
+  position: relative;
+  font-size: 0.8rem;
+  color: #2f3e46;
+  transition: transform .22s, box-shadow .22s;
+}
+
+.club-three-col li::before {
+  content: counter(member, decimal-leading-zero);
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  font-weight: 700;
+  color: #28d1a1;
+  background: #e6f9f1;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.club-three-col li:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 px 1px rgba(46, 213, 112, 0.16);
+  background: #f7faf9;
+}
+
+@media (max-width: 900px) {
+  .club-three-col {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px 24px;
+  }
+}
+
+/* ----------  SMALL SECTION TITLES  ---------- */
+.section-title {
+    font-size: 1.4rem;   /* was 2.0rem */
+}
+/* remove underline from all section titles */
+.section-title::after {
+  display: none;
+}
+
+/* ----------  CREATIVE ABOUT (Smart-phone) ---------- */
+@media (max-width: 600px) {
+  .about-content {
+    max-width: 100vw;
+    margin: 0 auto 30px;
+    padding: 0 14px;
+    font-size: .9rem;               /* tiny, readable */
+    line-height: 1.55;
+    text-align: left;
+  }
+
+  /* split paragraph into words for stagger animation */
+  .about-content p {
+    display: inline;
+    opacity: 0;
+    animation: slideWord .55s ease forwards;
+    animation-timeline: view();
+    animation-range: entry 0% entry 40%;
+  }
+  .about-content p .word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(16px);
+    animation: slideWord .55s ease forwards;
+    animation-delay: calc(var(--i) * .04s);
+  }
+
+  @keyframes slideWord {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* ----------  TINY 2-COLUMN CLUB CARDS (MOBILE) ---------- */
+@media (max-width: 600px) {
+  .club-three-col {
+    grid-template-columns: repeat(2, 1fr); /* keep 2 columns */
+    gap: 10px 8px;
+    padding: 0 8px;
+  }
+
+  .club-three-col li {
+    font-size: 0.6rem;          /* tiny text */
+    padding: 1px 1px 0px 28px;  /* compact box */
+    min-height: 20px;
+  } 
+    
+  .club-three-col li::before {
+    width: 18px;
+    height: 18px;
+    font-size: 0.65rem;
+    left: 6px;
+  }
+}
+
+/* ----------  COMPACT 2-COLUMN POLAROIDS (MOBILE ≤ 600 px) ---------- */
+@media (max-width: 600px) {
+  .collage {
+    grid-template-columns: repeat(2, 1fr);   /* 2 photos per row */
+    gap: 10px;
+    padding: 0 6px;
+  }
+
+  .polaroid {
+    padding: 6px 6px 28px;            /* smaller frame */
+    box-shadow: 0 2px 8px rgba(0,0,0,.12);
+  }
+
+  .polaroid img {
+    height: 110px;                   /* tiny square-ish photo */
+    border-radius: 2px;
+  }
+
+  .polaroid span {
+    font-size: .75rem;
+    margin-top: 6px;
+  }
+}
+/* ----------  COMPACT ABOUT-IMAGE (MOBILE) ---------- */
+@media (max-width: 600px) {
+  .gallery {
+    max-width: 260px !important;   /* shrink wrapper */
+    margin: 0 auto 30px !important;
+  }
+
+  .gallery-item img {
+    height: 160px;                 /* smaller photo */
+    border-radius: 8px;
+  }
+
+  .gallery-caption {
+    font-size: .75rem;
+    padding: 8px 10px;
+  }
+}
+/* ----------  COMPACT NAVBAR (MOBILE) ---------- */
+@media (max-width: 600px) {
+  header {
+    padding: 8px 0;            /* overall header height ↓ */
+  }
+  nav {
+    gap: 12px;                /* tighter spacing */
+  }
+  nav a {
+    font-size: 0.8rem;
+    padding: 5px 10px;        /* smaller pill */
+  }
+}
+/* ----------  SMALL, LEFT-START HERO (MOBILE) ---------- */
+@media (max-width: 600px) {
+  .hero {
+    height: 60vh;              /* shorter overall */
+    place-items: flex-start;   /* pin to the left */
+    padding: 0 16px;           /* edge breathing room */
+  }
+
+  .hero-content {
+    width: 100%;
+    max-width: 70%;            /* never exceed 70 % */
+    text-align: left;          /* left-align text */
+    margin-top: 12vh;          /* push down a bit */
+    animation: none;           /* remove old fade-up */
+  }
+
+  .hero-content h1 {
+    font-size: 1.6rem;         /* compact title */
+    margin-bottom: 6px;
+  }
+
+  .hero-content p {
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+  }
+}
+/* compact hero image (mobile only) */
+.hero-thumb {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: 190px;
+  object-fit: cover;
+  margin: 0 0 20px 0;
+}
+
+/* hide on larger screens */
+@media (min-width: 601px) {
+  .hero-thumb { display: none; }
+}
+@media (max-width: 600px) {
+  #overview {
+    padding-top: 10px;   /* default was 120px → now half */
+    margin-top: -20px;   /* pull it up closer to hero */
+  }
+}
+
