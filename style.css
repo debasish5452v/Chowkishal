@@ -504,7 +504,7 @@ nav a.active::after { width: 100%; }
   }
 
   .gallery-item img {
-    height: 160px;                 /* smaller photo */
+    height: 165px;                 /* smaller photo */
     border-radius: 8px;
   }
 
@@ -529,16 +529,16 @@ nav a.active::after { width: 100%; }
 /* ----------  SMALL, LEFT-START HERO (MOBILE) ---------- */
 @media (max-width: 600px) {
   .hero {
-    height: 60vh;              /* shorter overall */
+    height: 65vh;              /* shorter overall */
     place-items: flex-start;   /* pin to the left */
     padding: 0 16px;           /* edge breathing room */
   }
 
   .hero-content {
     width: 100%;
-    max-width: 70%;            /* never exceed 70 % */
+    max-width: 75%;            /* never exceed 70 % */
     text-align: left;          /* left-align text */
-    margin-top: 12vh;          /* push down a bit */
+    margin-top: 10vh;          /* push down a bit */
     animation: none;           /* remove old fade-up */
   }
 
@@ -573,3 +573,21 @@ nav a.active::after { width: 100%; }
   }
 }
 
+/*===== SCROLLING ANIMATIONS =====*/
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateX(-80px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
+.club-three-col,
+.about-content {
+    animation: appear linear;
+    animation-timeline: view();
+    animation-range: entry 0% cover 40%;
+}
