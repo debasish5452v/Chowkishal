@@ -1,6 +1,6 @@
 # Chowkishal Village Website
 
-A responsive website showcasing the beauty and community of my village.
+A responsive website showcasing the beauty and community of my small village.
 
 ## Features
 
