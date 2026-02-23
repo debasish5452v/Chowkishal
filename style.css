@@ -217,6 +217,18 @@ nav a.active::after { width: 100%; }
         object-fit: cover;
     }
 }
+
+/* Make about image more compact on desktop */
+@media (min-width: 1024px) {
+    .gallery[style*="max-width:400px"] {
+        max-width: 320px !important;
+        margin: 0 auto 40px !important;
+    }
+    
+    .gallery[style*="max-width:400px"] .gallery-item img {
+        height: 200px;
+    }
+}
 .gallery-caption {
     position: absolute;
     bottom: 0;
@@ -322,9 +334,10 @@ nav a.active::after { width: 100%; }
 /* Desktop about optimization */
 @media (min-width: 1024px) {
     .about-content {
-        max-width: 700px;
-        font-size: 0.95rem;
-        line-height: 1.7;
+        max-width: 650px;
+        font-size: 0.9rem;
+        line-height: 1.65;
+        margin: 0 auto 40px;
     }
 }
 .about-cards {
@@ -358,8 +371,8 @@ nav a.active::after { width: 100%; }
 /* Desktop map optimization */
 @media (min-width: 1024px) {
     .map-wrapper {
-        max-width: 950px;
-        height: 450px;
+        max-width: 850px;
+        height: 380px;
     }
 }
 
@@ -409,9 +422,22 @@ nav a.active::after { width: 100%; }
 /* Desktop collage optimization */
 @media (min-width: 1024px) {
   .collage {
-    max-width: 950px;
-    gap: 28px;
+    max-width: 850px;
+    gap: 20px;
     padding: 0 30px;
+  }
+  
+  .polaroid {
+    padding: 10px 10px 40px;
+  }
+  
+  .polaroid img {
+    height: 150px;
+  }
+  
+  .polaroid span {
+    font-size: 0.85rem;
+    margin-top: 10px;
   }
 }
 
