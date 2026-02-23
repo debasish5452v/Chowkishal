@@ -8,6 +8,27 @@ body {
     overflow-x: hidden;
 }
 
+/* ----------  DESKTOP CONTAINER  ---------- */
+@media (min-width: 1024px) {
+    body {
+        max-width: 1400px;
+        margin: 0 auto;
+        box-shadow: 0 0 40px rgba(0,0,0,.08);
+        background: #ffffff;
+    }
+    
+    body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #f8f5f0;
+        z-index: -1;
+    }
+}
+
 /* ----------  NAVBAR  ---------- */
 
 header {
@@ -16,11 +37,18 @@ header {
     width: 100%;
     padding: 20px 0;
     z-index: 1000;
-    transition: background .3s, box-shadow .3s;
+    transition: all .3s ease;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 header.scrolled {
-    background: rgba(255,255,255,.95);
-    box-shadow: 0 4px 20px rgba(0,0,0,.1);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 nav {
     display: flex;
@@ -35,6 +63,16 @@ nav a {
     font-size: 1rem;
     letter-spacing: .5px;
     transition: color .3s;
+}
+
+/* Desktop nav optimization */
+@media (min-width: 1024px) {
+    nav {
+        gap: 35px;
+    }
+    nav a {
+        font-size: 0.95rem;
+    }
 }
 header.scrolled nav a { color: #333; }
 nav a::after {
@@ -59,8 +97,16 @@ nav a.active::after { width: 100%; }
     color: #313030;
     position: relative;
 }
+
+/* Desktop hero optimization */
+@media (min-width: 1024px) {
+    .hero {
+        height: 70vh;
+        padding: 0 60px;
+    }
+}
 .hero-content h1 {
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-size: clamp(2.2rem, 4.5vw, 3.5rem);
     font-weight: 620;
     margin-bottom: 15px;
     animation: fadeUp 1.2s ease-out;
@@ -70,6 +116,15 @@ nav a.active::after { width: 100%; }
     font-size: 1.25rem;
     margin-bottom: 30px;
     animation: fadeUp 1.2s ease-out .2s both;
+}
+
+/* Desktop text optimization */
+@media (min-width: 1024px) {
+    .hero-content p {
+        font-size: 1.1rem;
+        max-width: 900px;
+        margin: 0 auto 30px;
+    }
 }
 .cta {
     display: inline-block;
@@ -103,6 +158,17 @@ nav a.active::after { width: 100%; }
     margin-bottom: 60px;
     position: relative;
 }
+
+/* Desktop sections optimization */
+@media (min-width: 1024px) {
+    .section {
+        padding: 80px 40px 70px;
+    }
+    .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 50px;
+    }
+}
 .section-title::after {
     content: '';
     position: absolute;
@@ -128,6 +194,8 @@ nav a.active::after { width: 100%; }
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(0,0,0,.1);
     transition: transform .3s;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 .gallery-item:hover { transform: translateY(-10px); }
 .gallery-item img {
@@ -137,6 +205,18 @@ nav a.active::after { width: 100%; }
     transition: transform .5s;
 }
 .gallery-item:hover img { transform: scale(1.1); }
+
+/* Featured image - full display on desktop */
+@media (min-width: 769px) {
+    .hero + .gallery-item {
+        max-width: 750px;
+        margin: 40px auto;
+    }
+    .hero + .gallery-item img {
+        height: 320px;
+        object-fit: cover;
+    }
+}
 .gallery-caption {
     position: absolute;
     bottom: 0;
@@ -238,6 +318,15 @@ nav a.active::after { width: 100%; }
     font-size: 1rem;
     color: #555;
 }
+
+/* Desktop about optimization */
+@media (min-width: 1024px) {
+    .about-content {
+        max-width: 700px;
+        font-size: 0.95rem;
+        line-height: 1.7;
+    }
+}
 .about-cards {
     display: flex;
     justify-content: center;
@@ -264,6 +353,14 @@ nav a.active::after { width: 100%; }
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 8px 25px rgba(0,0,0,.15);
+}
+
+/* Desktop map optimization */
+@media (min-width: 1024px) {
+    .map-wrapper {
+        max-width: 950px;
+        height: 450px;
+    }
 }
 
 /* ----------  ANIMATIONS  ---------- */
@@ -307,6 +404,15 @@ nav a.active::after { width: 100%; }
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
+}
+
+/* Desktop collage optimization */
+@media (min-width: 1024px) {
+  .collage {
+    max-width: 950px;
+    gap: 28px;
+    padding: 0 30px;
+  }
 }
 
 .polaroid {
@@ -356,8 +462,8 @@ nav a.active::after { width: 100%; }
 .club-three-col {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px 32px;
-  max-width: 900px;
+  gap: 8px 12px;
+  max-width: 850px;
   margin: 0 auto;
   padding: 0 20px;
   counter-reset: member;
@@ -367,43 +473,84 @@ nav a.active::after { width: 100%; }
 .club-three-col li {
   counter-increment: member;
   background: #ffffff;
-  border-radius: 14px;
-  box-shadow: 0 4px 14px rgba(0,0,0,.08);
-  padding: 15px 10px 15px 45px;
+  border-radius: 50px;
+  border: 1.5px solid #e0f2f1;
+  padding: 8px 16px 8px 36px;
   position: relative;
   font-size: 0.8rem;
-  color: #2f3e46;
-  transition: transform .22s, box-shadow .22s;
+  font-weight: 500;
+  color: #2c5f5d;
+  transition: all .4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  opacity: 0;
+  transform: scale(0.8) rotate(-5deg);
+  animation: popIn 0.5s ease forwards;
+  animation-timeline: view();
+  animation-range: entry 0% entry 20%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.club-three-col li:nth-child(odd) { 
+  animation-delay: 0.05s;
+  border-color: #d5f5e3;
+}
+.club-three-col li:nth-child(even) { 
+  animation-delay: 0.1s;
+  border-color: #e8f8f5;
 }
 
 .club-three-col li::before {
-  content: counter(member, decimal-leading-zero);
+  content: counter(member);
   position: absolute;
   top: 50%;
-  left: 12px;
+  left: 8px;
   transform: translateY(-50%);
-  font-size: 1rem;
+  font-size: 0.65rem;
   font-weight: 700;
-  color: #28d1a1;
-  background: #e6f9f1;
+  color: #ffffff;
+  background: linear-gradient(135deg, #1abc9c 0%, #16a085 100%);
   border-radius: 50%;
-  width: 28px;
-  height: 28px;
+  width: 20px;
+  height: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all .4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
 .club-three-col li:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 px 1px rgba(46, 213, 112, 0.16);
-  background: #f7faf9;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(26, 188, 156, 0.25);
+  background: linear-gradient(135deg, #e8f8f5 0%, #d5f5e3 100%);
+  border-color: #1abc9c;
+  color: #16a085;
+}
+
+.club-three-col li:hover::before {
+  transform: translateY(-50%) rotate(360deg) scale(1.15);
+  background: linear-gradient(135deg, #16a085 0%, #0e7c68 100%);
+  box-shadow: 0 0 0 3px rgba(26, 188, 156, 0.2);
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) rotate(-5deg);
+  }
+  60% {
+    transform: scale(1.05) rotate(2deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
 }
 
 @media (max-width: 900px) {
   .club-three-col {
     grid-template-columns: repeat(2, 1fr);
-    gap: 18px 24px;
+    gap: 8px 10px;
   }
 }
 
@@ -454,21 +601,21 @@ nav a.active::after { width: 100%; }
 /* ----------  TINY 2-COLUMN CLUB CARDS (MOBILE) ---------- */
 @media (max-width: 600px) {
   .club-three-col {
-    grid-template-columns: repeat(2, 1fr); /* keep 2 columns */
-    gap: 10px 8px;
-    padding: 0 8px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px 8px;
+    padding: 0 10px;
   }
 
   .club-three-col li {
-    font-size: 0.6rem;          /* tiny text */
-    padding: 1px 1px 0px 28px;  /* compact box */
-    min-height: 20px;
+    font-size: 0.68rem;
+    padding: 6px 10px 6px 28px;
+    border-radius: 30px;
   } 
     
   .club-three-col li::before {
-    width: 18px;
-    height: 18px;
-    font-size: 0.65rem;
+    width: 16px;
+    height: 16px;
+    font-size: 0.6rem;
     left: 6px;
   }
 }
@@ -585,7 +732,6 @@ nav a.active::after { width: 100%; }
     }
 }
 
-.club-three-col,
 .about-content {
     animation: appear linear;
     animation-timeline: view();
